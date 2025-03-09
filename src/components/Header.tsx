@@ -16,7 +16,7 @@ export default function Header() {
       <div className="header-top"></div>
       <div className="navbar">
         <div className="header-left">
-          <img src="../public/img/logo.svg" alt="Die Rezeptwelt Logo" />
+          <img src="/img/logo.svg" alt="Die Rezeptwelt Logo" />
           {/*        <img src="../src/assets/img/logo.svg" alt="Die Rezeptwelt Logo" /> */}
           <h2>Die Rezeptwelt</h2>
         </div>
