@@ -1,0 +1,352 @@
+@font-face {
+  font-family: Inter-SemiBold;
+  src: url("./assets/fonts/Inter/static/Inter-SemiBold.ttf");
+}
+@font-face {
+  font-family: Inter-Bold;
+  src: url("./assets/fonts/Inter/static/Inter-Bold.ttf");
+}
+@font-face {
+  font-family: Inter-Regular;
+  src: url("./assets/fonts/Inter/static/Inter-Regular.ttf");
+}
+@font-face {
+  font-family: Inter-Medium;
+  src: url("./assets/fonts/Inter/static/Inter-Medium.ttf");
+}
+
+:root {
+  font-family: Inter-SemiBold;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  height: 143px;
+}
+
+.header-top {
+  height: 30px;
+  background-color: #ffdb63;
+}
+
+.navbar {
+  display: flex;
+  gap: 140px;
+  padding-left: 260px;
+  padding-right: 62px;
+}
+
+.header-left {
+  background-color: white;
+  min-width: 231px;
+  height: 113px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  h2 {
+    font-size: 26px;
+    font-family: Inter-Medium;
+  }
+  img {
+    height: 26px;
+  }
+}
+
+nav {
+  font-size: 24px;
+  font-family: Inter-Bold;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  a {
+    text-decoration: none;
+    color: #2c2b2b;
+  }
+}
+.hero {
+  width: 100%;
+  height: 100%;
+  background-image: url("./assets/img/hero_image.png");
+  background-repeat: no-repeat;
+}
+.details-hero-text,
+.hero-text {
+  font-family: Inter-Bold;
+  font-size: 40px;
+  text-align: center;
+  color: white;
+  width: 62%;
+  margin: 0 auto;
+  padding: 112px 0;
+  line-height: 1.15;
+}
+
+.details-hero {
+  width: 100%;
+  height: 362px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.most-popular {
+  display: flex;
+  flex-direction: column;
+  width: 1285px;
+  margin: 89px auto 88px auto;
+  gap: 59px;
+  h3 {
+    font-size: 38px;
+    font-family: Inter-Bold;
+    text-align: center;
+  }
+  .most-popular-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 38px;
+    justify-items: center;
+    img {
+      border-radius: 33px 33px 0 0;
+      width: 400px;
+      height: 265px;
+      object-fit: cover;
+    }
+  }
+  .recipe-page {
+    flex-direction: column;
+    height: 474px;
+  }
+  .info {
+    margin-top: -64px;
+  }
+}
+
+.most-recent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  img {
+    border-radius: 33px 0 0 33px;
+    height: 400px;
+    width: 403px;
+    object-fit: cover;
+  }
+  h3 {
+    font-size: 38px;
+    font-family: Inter-Bold;
+    text-align: center;
+  }
+  .recipe-page {
+    width: 100%;
+    max-width: 88.89%;
+    height: 400px;
+  }
+}
+
+.recipe-page {
+  display: flex;
+  gap: 18px;
+  background-color: #f5f2f2;
+  border-radius: 33px;
+}
+
+.info {
+  padding: 29px 34px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: #f5f2f2;
+  height: 262px;
+  border-radius: 0 0 33px 33px;
+  justify-content: space-between;
+  h3 {
+    font-size: 32px;
+    font-family: Inter-Bold;
+    text-align: left;
+  }
+  p {
+    font-size: 20.71px;
+    font-family: Inter-Regular;
+  }
+  .to-recipe {
+    font-size: 20.71px;
+    font-family: Inter-Bold;
+    padding: 9px 33px;
+    background-color: #ffdb63;
+    border-radius: 32px;
+    align-self: flex-start;
+  }
+}
+
+.to-recipe {
+  font-size: 20.71px;
+  font-family: Inter-Bold;
+  padding: 9px 33px;
+  background-color: #ffdb63;
+  border-radius: 32px;
+  align-self: flex-start;
+}
+
+footer {
+  background-color: #ffdb63;
+  height: 273px;
+  display: flex;
+}
+
+.footer-left {
+  color: #2c2b2b;
+  width: 412px;
+  height: 273px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 7.91%;
+}
+
+.footer-left > h2 {
+  font-size: 46.13px;
+}
+
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 19.1%;
+  height: 102px;
+  margin-top: 85px;
+}
+
+.footer-social > h3 {
+  font-size: 26px;
+  color: black;
+}
+
+.footer-social-logos {
+  display: flex;
+  gap: 8px;
+}
+
+.about-text {
+  margin: 75px 145px 83px 144px;
+  font-size: 30px;
+  font-family: Inter-Regular;
+  line-height: 1.15;
+  p:not(p:first-of-type) {
+    margin-top: 46px;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  button {
+    padding: 5px 10px;
+  }
+  label {
+    width: 200px;
+    display: inline-block;
+  }
+  input[type="text"],
+  input[type="number"],
+  select {
+    width: 300px;
+  }
+}
+
+.logout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  a {
+    font-size: 14px;
+    font-family: Inter-Regular;
+  }
+}
+
+.profileData {
+  display: flex;
+  flex-direction: column;
+}
+.profile > div {
+  display: flex;
+  justify-content: space-around;
+  img {
+    height: 400px;
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.profile {
+  p {
+    font-size: 14px;
+    font-family: Inter-Regular;
+  }
+  h2 {
+    text-align: center;
+  }
+}
+.profile,
+.signInUp {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.details {
+  margin: 21px 79px 48px 79px;
+}
+
+.details > .edit {
+  display: flex;
+  gap: 16px;
+  justify-content: right;
+  img {
+    width: 24px;
+  }
+}
+
+.details-instructions > h3,
+.details-add-info > h3,
+.details-ingredients > h3 {
+  font-size: 24px;
+  font-family: Inter-Bold;
+}
+.details-add-info > h3,
+.details-instructions > h3 {
+  margin-top: 24px;
+}
+article,
+ul {
+  margin-top: 24px;
+  font-size: 24px;
+  font-family: Inter-Regular;
+}
+article,
+ul > li {
+  list-style-type: none;
+  margin-left: 24px;
+}
