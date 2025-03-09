@@ -41,17 +41,13 @@ export default function DetailsPage() {
           <div className="edit">
             <Link to={`/edit-recipe/${id}`}>
               <img
-                src="../src/assets/img/writing-icon.svg"
+                src="/img/writing-icon.svg"
                 alt="Bearbeiten"
                 title="Bearbeiten"
               />
             </Link>
             <button onClick={handleDelete}>
-              <img
-                src="../src/assets/img/recycle-bin.svg"
-                alt="Löschen"
-                title="Löschen"
-              />
+              <img src="/img/recycle-bin.svg" alt="Löschen" title="Löschen" />
             </button>
           </div>
         )}

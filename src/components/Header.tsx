@@ -25,7 +25,7 @@ export default function Header() {
           <NavLink to="/">Home</NavLink>
           <NavLink to="/recipes">Rezepte</NavLink>
           {user && <NavLink to="/add-recipes">Rezept anlegen</NavLink>}
-          <NavLink to="/about_us">Über uns</NavLink>
+          {/* <NavLink to="/about_us">Über uns</NavLink> */}
           {!user && <NavLink to="/login">Login</NavLink>}
           {user && (
             <div className="logout">
