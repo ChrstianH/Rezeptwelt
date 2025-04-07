@@ -17,7 +17,6 @@ export default function Header() {
       <div className="navbar">
         <div className="header-left">
           <img src="/img/logo.svg" alt="Die Rezeptwelt Logo" />
-          {/*        <img src="../src/assets/img/logo.svg" alt="Die Rezeptwelt Logo" /> */}
           <h2>Die Rezeptwelt</h2>
         </div>
 
@@ -25,7 +24,6 @@ export default function Header() {
           <NavLink to="/">Home</NavLink>
           <NavLink to="/recipes">Rezepte</NavLink>
           {user && <NavLink to="/add-recipes">Rezept anlegen</NavLink>}
-          {/* <NavLink to="/about_us">Über uns</NavLink> */}
           {!user && <NavLink to="/login">Login</NavLink>}
           {user && (
             <div className="logout">
