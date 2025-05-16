@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
 import { getStorageURL } from "../lib/supabase";
-import RecipesData from "../types/recipesData";
 
-export default function RecipePage(props: { recipe: RecipesData }) {
+export default function RecipePage(props: {
+  recipe: {
+    id: string;
+    image_url: string | null;
+    name: string;
+    description: string;
+  } | null;
+}) {
   const imageFullPath = getStorageURL(props.recipe!.image_url);
   return (
     <div className="recipe-page">
