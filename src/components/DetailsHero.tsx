@@ -5,7 +5,6 @@ export default function DetailsHero(props: {
   image_url: string | null;
 }) {
   const background = props.image_url;
-
   const imageFullPath = getStorageURL(background);
 
   const imgStyle = {

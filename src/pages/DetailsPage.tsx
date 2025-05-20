@@ -1,23 +1,15 @@
+import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import { useEffect, useState } from "react";
-import { QueryData } from "@supabase/supabase-js";
 import DetailsHero from "../components/DetailsHero";
 import { useUserContext } from "../context/userContext";
+import RecipeData from "../types/recipesData";
 
 export default function DetailsPage() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState<RecipeData | null>(null);
   const { user } = useUserContext();
-
-  const getRecipe = async () => {
-    const recipe = await supabase
-      .from("recipes")
-      .select("id, image_url, name, instructions, description, ingredients(*)")
-      .eq("id", id!)
-      .single();
-    return recipe;
-  };
 
   const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -26,16 +18,18 @@ export default function DetailsPage() {
   };
 
   useEffect(() => {
-    getRecipe().then((result) => setRecipe(result.data));
+    axios
+      .get(`http://localhost:8080/recipe`, { params: { recipe_id: id } })
+      .then((recipe) => {
+        setRecipe(recipe.data[0] as RecipeData);
+      });
   }, []);
-
-  type RecipeData = QueryData<ReturnType<typeof getRecipe>>;
 
   if (!recipe) return;
 
   return (
-    <div>
-      <DetailsHero name={recipe?.name} image_url={recipe?.image_url} />{" "}
+    <main>
+      <DetailsHero name={recipe.name} image_url={recipe.image_url} />
       <div className="details">
         {user && (
           <div className="edit">
@@ -53,13 +47,13 @@ export default function DetailsPage() {
         )}
         <div className="details-ingredients">
           <h3>Zutaten</h3>
-          <ul>
+          {/*           <ul>
             {recipe.ingredients.map((ingredient) => (
               <li key={ingredient.id}>
                 {ingredient.quantity} {ingredient.unit} {ingredient.name}
               </li>
             ))}
-          </ul>
+          </ul> */}
         </div>
         <div className="details-instructions">
           <h3>Zubereitung</h3>
@@ -70,6 +64,6 @@ export default function DetailsPage() {
           <article>{recipe.description}</article>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
