@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { Link, useParams } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import { useEffect, useState } from "react";
@@ -19,7 +19,7 @@ export default function DetailsPage() {
 
   useEffect(() => {
     axios
-      .post(`http://localhost:8080/recipe`, { recipe_id: id })
+      .get(`http://localhost:8080/recipe`, { params: { recipe_id: id } })
       .then((recipe) => {
         setRecipe(recipe.data[0] as RecipeData);
       });
@@ -57,7 +57,7 @@ export default function DetailsPage() {
         </div>
         <div className="details-instructions">
           <h3>Zubereitung</h3>
-          {/*           <article>{recipe.instructions}</article> */}
+          <article>{recipe.instructions}</article>
         </div>
         <div className="details-add-info">
           <h3>Zusätzliche Informationen</h3>
