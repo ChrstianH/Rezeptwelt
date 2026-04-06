@@ -5,7 +5,7 @@ export default function Footer() {
         <img src="/img/logo.svg" alt="Die Rezeptwelt Logo" />
         <h2>Die Rezeptwelt</h2>
       </div>
-      <div className="footer-social">
+      {/*       <div className="footer-social">
         <h3>Social Media</h3>
         <div className="footer-social-logos">
           <img src="/img/youtube.png" alt="youtube" />
@@ -14,6 +14,7 @@ export default function Footer() {
           <img src="/img/pinterest.png" alt="pinterest" />
         </div>
       </div>
+ */}{" "}
     </footer>
   );
 }

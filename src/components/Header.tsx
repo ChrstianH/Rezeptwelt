@@ -1,6 +1,5 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/userContext";
-import { supabase } from "../lib/supabase";
 
 export default function Header() {
   const { user, setUser } = useUserContext();
@@ -8,7 +7,7 @@ export default function Header() {
 
   const handleLogoutClick = () => {
     setUser(null);
-    supabase.auth.signOut();
+    // supabase.auth.signOut();
     navigate("/");
   };
   return (

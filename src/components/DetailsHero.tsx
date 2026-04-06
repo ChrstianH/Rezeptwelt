@@ -1,14 +1,22 @@
-import { getStorageURL } from "../lib/supabase";
+//import { getStorageURL } from "../lib/supabase";
 
 export default function DetailsHero(props: {
   name: string;
   image_url: string | null;
 }) {
-  const background = props.image_url;
-  const imageFullPath = getStorageURL(background);
+  // const getStorageURL = (path: string | null) => {
+  //   if (path === null) return null;
+  //   const URL = "/rezeptwelt/" + path;
+  //   return URL;
+  // };
+
+  //const background = props.image_url;
+  //const imageFullPath = getStorageURL(background);
 
   const imgStyle = {
-    backgroundImage: `url(${imageFullPath || "https://placehold.co/600x900"}`,
+    backgroundImage: props.image_url
+      ? `url(https://rezeptwelt-backend.onrender.com/static-images/rezeptwelt/${props.image_url}.jpg)`
+      : `url(https://placehold.co/600x900)`,
   };
 
   return (

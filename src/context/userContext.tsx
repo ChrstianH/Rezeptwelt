@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import type { User } from "@supabase/supabase-js";
-import { supabase } from "../lib/supabase";
+//import { supabase } from "../lib/supabase";
 
 interface UserContext {
   user: User | null;
@@ -16,10 +16,10 @@ export const UserContextProvider = ({
 }) => {
   const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
-    supabase.auth.getUser().then((user) => {
-      setUser(user.data.user);
-    });
-  }, []);
+    //    supabase.auth.getUser().then((user) => {
+    setUser(user || null);
+    //    });
+  }, [user]);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

@@ -1,29 +1,71 @@
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
-import { supabase } from "../lib/supabase";
+// import { supabase } from "../lib/supabase";
 import { useEffect, useState } from "react";
 import DetailsHero from "../components/DetailsHero";
 import { useUserContext } from "../context/userContext";
 import RecipeData from "../types/recipesData";
+import InstructionsData from "../types/instructionsData";
+import RecipesData from "../types/recipesData";
+import IngredientsData from "../types/ingredientsData";
 
 export default function DetailsPage() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState<RecipeData | null>(null);
   const { user } = useUserContext();
 
+  console.log(id);
+
   const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    await supabase.from("recipes").delete().eq("id", id!);
+    // await supabase.from("recipes").delete().eq("id", id!);
   };
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/recipe`, { params: { recipe_id: id } })
-      .then((recipe) => {
-        setRecipe(recipe.data[0] as RecipeData);
-      });
-  }, []);
+    const fetchData = async () => {
+      try {
+        const [recipeResponse, instructionsResponse, ingredientsResponse] =
+          await Promise.all([
+            axios.get(`https://rezeptwelt-backend.onrender.com/recipe`, {
+              params: { recipe_id: id },
+            }),
+            axios.get(
+              `https://rezeptwelt-backend.onrender.com/getInstructions`,
+              {
+                params: { recipe_id: id },
+              }
+            ),
+            axios.get(
+              `https://rezeptwelt-backend.onrender.com/getIngredients`,
+              {
+                params: { recipe_id: id },
+              }
+            ),
+          ]);
+
+        const recipeData: RecipesData = recipeResponse.data[0];
+        if (!recipeData) {
+          return;
+        }
+
+        const instructionsData: InstructionsData[] = instructionsResponse.data;
+        const ingredientsData: IngredientsData[] = ingredientsResponse.data;
+        const combinedRecipe: RecipeData = {
+          ...recipeData,
+          instructions: instructionsData,
+          ingredients: ingredientsData,
+        };
+        setRecipe(combinedRecipe);
+      } catch (error) {
+        console.error("Error fetching recipe details:", error);
+      }
+    };
+
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
 
   if (!recipe) return;
 
@@ -47,17 +89,21 @@ export default function DetailsPage() {
         )}
         <div className="details-ingredients">
           <h3>Zutaten</h3>
-          {/*           <ul>
-            {recipe.ingredients.map((ingredient) => (
+          <ul>
+            {recipe.ingredients.map((ingredient: IngredientsData) => (
               <li key={ingredient.id}>
                 {ingredient.quantity} {ingredient.unit} {ingredient.name}
               </li>
             ))}
-          </ul> */}
+          </ul>
         </div>
         <div className="details-instructions">
           <h3>Zubereitung</h3>
-          <article>{recipe.instructions}</article>
+          <ol>
+            {recipe.instructions.map((instruction: InstructionsData) => (
+              <li key={instruction.id}>{instruction.instruction_text}</li>
+            ))}
+          </ol>
         </div>
         <div className="details-add-info">
           <h3>Zusätzliche Informationen</h3>

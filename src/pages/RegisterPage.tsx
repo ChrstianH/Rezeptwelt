@@ -1,35 +1,35 @@
 import { useState } from "react";
-import { useUserContext } from "../context/userContext";
-import { useNavigate } from "react-router-dom";
-import { supabase } from "../lib/supabase";
+// import { useUserContext } from "../context/userContext";
+// import { useNavigate } from "react-router-dom";
+// import { supabase } from "../lib/supabase";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [vorname, setVorname] = useState("");
   const [nachname, setNachname] = useState("");
-  const { setUser } = useUserContext();
-  const navigate = useNavigate();
+  // const { setUser } = useUserContext();
+  // const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const result = await supabase.auth.signUp({
-      email: email,
-      password: password,
-      options: {
-        data: {
-          first_name: vorname,
-          last_name: nachname,
-        },
-      },
-    });
-    if (result.error) {
-      alert(result.error.message);
-    } else {
-      setUser(result.data.user);
-      alert("Bitte bestätige deine Registrierung per E-Mail");
-      navigate("/");
-    }
+    // const result = await supabase.auth.signUp({
+    //   email: email,
+    //   password: password,
+    //   options: {
+    //     data: {
+    //       first_name: vorname,
+    //       last_name: nachname,
+    //     },
+    //   },
+    // });
+    // if (result.error) {
+    //   alert(result.error.message);
+    // } else {
+    //   setUser(result.data.user);
+    //   alert("Bitte bestätige deine Registrierung per E-Mail");
+    //   navigate("/");
+    // }
   };
 
   return (

@@ -25,7 +25,7 @@
 }
 
 body {
-  width: 100vw;
+  width: 100%;
   margin: 0 auto;
 }
 * {
@@ -90,7 +90,7 @@ nav {
 .overlay {
   width: 100%;
   max-width: 1440px;
-  height: 40%;
+  height: 362px;
   position: absolute;
   background-color: black;
   opacity: 0.5;
@@ -348,6 +348,16 @@ form {
   }
 }
 
+.details-instructions {
+  ol {
+    padding: 18px;
+    margin-left: 28px;
+    li {
+      font-size: 20px;
+      font-family: Inter-Regular;
+    }
+  }
+}
 .details-instructions > h3,
 .details-add-info > h3,
 .details-ingredients > h3 {
@@ -361,7 +371,7 @@ form {
 article,
 ul {
   margin-top: 24px;
-  font-size: 24px;
+  font-size: 20px;
   font-family: Inter-Regular;
 }
 article,

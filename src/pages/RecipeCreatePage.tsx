@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { supabase } from "../lib/supabase";
 
 type Ingredient = {
   name: string;
@@ -50,56 +49,57 @@ export default function RecipeCreatePage() {
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    const result = await supabase
-      .from("recipes")
-      .insert({
-        name: nameRef.current!.value,
-        description: descRef.current!.value,
-        servings: Number(portionsRef.current!.value),
-        instructions: instructionsRef.current!.value,
-        category_id: categoryRef.current!.value,
-      })
-      .select("id")
-      .single();
+    // const result = await supabase
+    //   .from("recipes")
+    //   .insert({
+    //     name: nameRef.current!.value,
+    //     description: descRef.current!.value,
+    //     servings: Number(portionsRef.current!.value),
+    //     instructions: instructionsRef.current!.value,
+    //     category_id: categoryRef.current!.value,
+    //   })
+    //   .select("id")
+    //   .single();
 
-    const iResult = await supabase.from("ingredients").insert(
-      ingredients.map((ingredient: Ingredient) => ({
-        name: ingredient.name,
-        quantity: Number(ingredient.quantity) || null,
-        unit: ingredient.unit || null,
-        additional_info: ingredient.additional_info || null,
-        recipe_id: result.data!.id,
-      }))
-    );
+    // const iResult = await supabase.from("ingredients").insert(
+    //   ingredients.map((ingredient: Ingredient) => ({
+    //     name: ingredient.name,
+    //     quantity: Number(ingredient.quantity) || null,
+    //     unit: ingredient.unit || null,
+    //     additional_info: ingredient.additional_info || null,
+    //     recipe_id: result.data!.id,
+    //   }))
+    // );
 
     const file = fileRef.current?.files?.[0] || null;
 
-    let imagePath: string | null = null;
+    // let imagePath: string | null = null;
 
     if (file) {
-      const uploadResult = await supabase.storage
-        .from("recipePhotos")
-        .upload(`${result.data!.id}/${crypto.randomUUID()}`, file, {
-          upsert: true,
-        });
-      imagePath = uploadResult.data?.fullPath || null;
+      // const uploadResult = null;
+      // const uploadResult = await supabase.storage
+      //   .from("recipePhotos")
+      //   .upload(`${result.data!.id}/${crypto.randomUUID()}`, file, {
+      //     upsert: true,
+      //   });
+      // imagePath = uploadResult || null;
     }
 
-    await supabase
-      .from("recipes")
-      .update({
-        image_url: imagePath,
-      })
-      .eq("id", result.data!.id);
-    if (result.error || iResult.error) {
-      if (iResult.error) {
-        alert(iResult.error.message);
-      } else {
-        alert(result.error?.message);
-      }
-    } else {
-      alert("Neues Rezept angelegt");
-    }
+    // await supabase
+    //   .from("recipes")
+    //   .update({
+    //     image_url: imagePath,^^
+    //   })
+    //   .eq("id", result.data!.id);
+    // if (result.error || iResult.error) {
+    //   if (iResult.error) {
+    //     alert(iResult.error.message);
+    //   } else {
+    //     alert(result.error?.message);
+    //   }
+    // } else {
+    //   alert("Neues Rezept angelegt");
+    // }
   };
 
   useEffect(() => {
@@ -107,8 +107,9 @@ export default function RecipeCreatePage() {
   }, []);
 
   const getCategories = async () => {
-    const result = await supabase.from("categories").select("id, name");
-    setCategories(result.data ?? []);
+    const result = null;
+    //    const result = await supabase.from("categories").select("id, name");
+    setCategories(result ?? []);
   };
 
   return (
